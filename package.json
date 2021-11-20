@@ -1,6 +1,6 @@
 {
   "name": "@nodestrap/indicator",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A generic element with enable/disable and active/passive state.",
   "type": "module",
   "main": "dist/Indicator.jsx",
