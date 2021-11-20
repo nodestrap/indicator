@@ -1,0 +1,44 @@
+{
+  "name": "@nodestrap/indicator",
+  "version": "4.0.0",
+  "description": "A generic element with enable/disable and active/passive state.",
+  "type": "module",
+  "main": "dist/Indicator.jsx",
+  "types": "dist/Indicator.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodestrap/indicator.git"
+  },
+  "keywords": [
+    "indicator",
+    "component",
+    "basic",
+    "generic",
+    "element",
+    "react",
+    "nodestrap",
+    "styled"
+  ],
+  "author": "heymarco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nodestrap/indicator/issues"
+  },
+  "homepage": "https://github.com/nodestrap/indicator#readme",
+  "dependencies": {
+    "@cssfn/css-config": "^1.0.1",
+    "@cssfn/css-types": "^1.0.2",
+    "@cssfn/css-var": "^1.0.2",
+    "@cssfn/cssfn": "^1.0.3",
+    "@cssfn/react-cssfn": "^1.0.3",
+    "@nodestrap/accessibilities": "^4.0.1",
+    "@nodestrap/basic": "^4.0.1",
+    "@nodestrap/element": "^4.0.1",
+    "@types/react": "^17.0.35",
+    "react": "^17.0.2",
+    "react-trigger-change": "^1.0.2"
+  }
+}
