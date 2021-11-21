@@ -75,7 +75,6 @@ export declare const useTogglerActive: <TActiveChangeArg extends unknown = unkno
 export declare const usesIndicatorLayout: () => StyleCollection;
 export declare const usesIndicatorVariants: () => StyleCollection;
 export declare const usesIndicatorStates: () => StyleCollection;
-export declare const usesIndicator: () => StyleCollection;
 export declare const useIndicatorSheet: import("@cssfn/types").Factory<import("jss").Classes<"main">>;
 export declare const cssProps: import("@cssfn/css-config").Refs<{
     filterDisable: string[][];
