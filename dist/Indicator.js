@@ -454,30 +454,20 @@ export function Indicator(props) {
     // fn props:
     const propAccess = usePropAccessibility(props);
     // jsx:
-    return (<Basic 
-    // other props:
-    {...props} 
-    // variants:
-    mild={props.mild ?? true} 
-    // classes:
-    mainClass={props.mainClass ?? sheet.main} stateClasses={[...(props.stateClasses ?? []),
+    return (React.createElement(Basic, { ...props, 
+        // variants:
+        mild: props.mild ?? true, 
+        // classes:
+        mainClass: props.mainClass ?? sheet.main, stateClasses: [...(props.stateClasses ?? []),
             enableDisableState.class,
             activePassiveState.class,
-        ]} 
-    // Control::disabled:
-    {...enableDisableState.props} 
-    // Check::checked:
-    {...activePassiveState.props} 
-    // events:
-    onAnimationEnd={(e) => {
+        ], ...enableDisableState.props, ...activePassiveState.props, 
+        // events:
+        onAnimationEnd: (e) => {
             props.onAnimationEnd?.(e);
             // states:
             enableDisableState.handleAnimationEnd(e);
             activePassiveState.handleAnimationEnd(e);
-        }}>
-            {props.children && <AccessibilityProvider {...propAccess}>
-                {props.children}
-            </AccessibilityProvider>}
-        </Basic>);
+        } }, props.children && React.createElement(AccessibilityProvider, { ...propAccess }, props.children)));
 }
 export { Indicator as default };
