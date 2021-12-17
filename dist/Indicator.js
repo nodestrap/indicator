@@ -210,7 +210,7 @@ export const markActive = () => composition([
  * @returns A `StyleCollection` represents the conditional color definitions at active state.
  */
 export const usesThemeActive = (themeName = 'secondary') => usesThemeCond(themeName);
-export const useActivePassiveState = (props, activeDn) => {
+export const useActivePassiveState = (props) => {
     // fn props:
     const propActive = usePropActive(props, null);
     const isCheckbox = (props.tag === 'input') && (props.type === 'checkbox');
@@ -220,7 +220,7 @@ export const useActivePassiveState = (props, activeDn) => {
     /*
      * state is active/passive based on [controllable active] (if set) and fallback to [uncontrollable active]
      */
-    const activeFn = propActive /*controllable*/ ?? activeDn /*uncontrollable*/ ?? false;
+    const activeFn = propActive /*controllable*/ ?? false;
     if (actived !== activeFn) { // change detected => apply the change & start animating
         setActived(activeFn); // remember the last change
         setAnimating(activeFn); // start activating-animation/deactivating-animation

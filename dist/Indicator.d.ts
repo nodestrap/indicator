@@ -54,7 +54,7 @@ export declare const markActive: () => StyleCollection;
  * @returns A `StyleCollection` represents the conditional color definitions at active state.
  */
 export declare const usesThemeActive: (themeName?: ThemeName | null) => StyleCollection;
-export declare const useActivePassiveState: (props: IndicationProps & SemanticProps, activeDn?: boolean | undefined) => {
+export declare const useActivePassiveState: (props: IndicationProps & SemanticProps) => {
     /**
      * partially/fully active
     */
