@@ -2,11 +2,11 @@
 import { default as React, useState, useReducer, } from 'react'; // base technology of our nodestrap components
 import { 
 // compositions:
-composition, mainComposition, imports, 
-// layouts:
-layout, vars, 
+mainComposition, 
+// styles:
+style, vars, imports, 
 // rules:
-states, rule, } from '@cssfn/cssfn'; // cssfn core
+rule, states, } from '@cssfn/cssfn'; // cssfn core
 import { 
 // hooks:
 createUseSheet, } from '@cssfn/react-cssfn'; // cssfn for react
@@ -48,31 +48,31 @@ export const isDisable = (styles) => rule([selectorIsDisabling, selectorIsDisabl
 export const isEnablingDisable = (styles) => rule([selectorIsEnabling, selectorIsDisabling, selectorIsDisabled], styles);
 /**
  * Uses enable & disable states.
- * @returns A `[Factory<StyleCollection>, ReadonlyRefs, ReadonlyDecls]` represents enable & disable state definitions.
+ * @returns A `[Factory<Rule>, ReadonlyRefs, ReadonlyDecls]` represents enable & disable state definitions.
  */
 export const usesEnableDisableState = () => {
     return [
-        () => composition([
-            states([
-                isEnabling([
-                    vars({
+        () => style({
+            ...states([
+                isEnabling({
+                    ...vars({
                         [enableDisableDecls.filter]: cssProps.filterDisable,
                         [enableDisableDecls.anim]: cssProps.animEnable,
                     }),
-                ]),
-                isDisabling([
-                    vars({
+                }),
+                isDisabling({
+                    ...vars({
                         [enableDisableDecls.filter]: cssProps.filterDisable,
                         [enableDisableDecls.anim]: cssProps.animDisable,
                     }),
-                ]),
-                isDisabled([
-                    vars({
+                }),
+                isDisabled({
+                    ...vars({
                         [enableDisableDecls.filter]: cssProps.filterDisable,
                     }),
-                ]),
+                }),
             ]),
-        ]),
+        }),
         enableDisableRefs,
         enableDisableDecls,
     ];
@@ -115,15 +115,16 @@ export const useEnableDisableState = (props) => {
                 return 'enable';
             // disabling:
             if (animating === false) {
-                if (isCtrlElm) {
-                    // a control_element uses pseudo :disabled for disabling
-                    // not needed using class .disable
-                    return null;
-                }
-                else {
-                    // a generic_element uses class .disable for disabling
-                    return 'disable';
-                } // if
+                // if (isCtrlElm) {
+                //     // a control_element uses pseudo :disabled for disabling
+                //     // not needed using class .disable
+                //     return null;
+                // }
+                // else {
+                //     // a generic_element uses class .disable for disabling
+                //     return 'disable';
+                // } // if
+                return 'disable';
             } // if
             // fully disabled:
             if (!enabled)
@@ -168,46 +169,46 @@ export const isPassive = (styles) => rule([selectorIsPassivating, selectorIsPass
 export const isActivePassivating = (styles) => rule([selectorIsActivating, selectorIsActived, selectorIsPassivating], styles);
 /**
  * Uses active & passive states.
- * @returns A `[Factory<StyleCollection>, ReadonlyRefs, ReadonlyDecls]` represents active & passive state definitions.
+ * @returns A `[Factory<Rule>, ReadonlyRefs, ReadonlyDecls]` represents active & passive state definitions.
  */
 export const usesActivePassiveState = () => {
     return [
-        () => composition([
-            states([
-                isActived([
-                    vars({
+        () => style({
+            ...states([
+                isActived({
+                    ...vars({
                         [activePassiveDecls.filter]: cssProps.filterActive,
                     }),
-                ]),
-                isActivating([
-                    vars({
+                }),
+                isActivating({
+                    ...vars({
                         [activePassiveDecls.filter]: cssProps.filterActive,
                         [activePassiveDecls.anim]: cssProps.animActive,
                     }),
-                ]),
-                isPassivating([
-                    vars({
+                }),
+                isPassivating({
+                    ...vars({
                         [activePassiveDecls.filter]: cssProps.filterActive,
                         [activePassiveDecls.anim]: cssProps.animPassive,
                     }),
-                ]),
+                }),
             ]),
-        ]),
+        }),
         activePassiveRefs,
         activePassiveDecls,
     ];
 };
-export const markActive = () => composition([
-    imports([
+export const markActive = () => style({
+    ...imports([
         outlinedOf(false),
         mildOf(false),
         usesThemeActive(), // switch to active theme
     ]),
-]);
+});
 /**
  * Creates a conditional color definitions at active state.
  * @param themeName The name of active theme.
- * @returns A `StyleCollection` represents the conditional color definitions at active state.
+ * @returns A `Rule` represents the conditional color definitions at active state.
  */
 export const usesThemeActive = (themeName = 'secondary') => usesThemeCond(themeName);
 export const useActivePassiveState = (props) => {
@@ -237,15 +238,16 @@ export const useActivePassiveState = (props) => {
         class: (() => {
             // activating:
             if (animating === true) {
-                if (isCheckbox) {
-                    // a checkbox uses pseudo :checked for activating
-                    // not needed using class .active
-                    return null;
-                }
-                else {
-                    // a generic_element uses class .active for activating
-                    return 'active';
-                } // if
+                // if (isCheckbox) {
+                //     // a checkbox uses pseudo :checked for activating
+                //     // not needed using class .active
+                //     return null;
+                // }
+                // else {
+                //     // a generic_element uses class .active for activating
+                //     return 'active';
+                // } // if
+                return 'active';
             } // if
             // passivating:
             if (animating === false)
@@ -324,66 +326,62 @@ export const useTogglerActive = (props, changeEventTarget) => {
 //#endregion activePassive
 // styles:
 export const usesIndicatorLayout = () => {
-    return composition([
-        imports([
+    return style({
+        ...imports([
             // layouts:
             usesBasicLayout(),
         ]),
-        layout({
+        ...style({
             // customize:
             ...usesGeneralProps(cssProps), // apply general cssProps
         }),
-    ]);
+    });
 };
 export const usesIndicatorVariants = () => {
     // dependencies:
     // layouts:
-    const [sizes] = usesSizeVariant((sizeName) => composition([
-        layout({
-            // overwrites propName = propName{SizeName}:
-            ...overwriteProps(cssDecls, usesSuffixedProps(cssProps, sizeName)),
-        }),
-    ]));
-    return composition([
-        imports([
+    const [sizes] = usesSizeVariant((sizeName) => style({
+        // overwrites propName = propName{SizeName}:
+        ...overwriteProps(cssDecls, usesSuffixedProps(cssProps, sizeName)),
+    }));
+    return style({
+        ...imports([
             // variants:
             usesBasicVariants(),
             // layouts:
             sizes(),
         ]),
-    ]);
+    });
 };
 export const usesIndicatorStates = () => {
     // dependencies:
     // states:
     const [enableDisable] = usesEnableDisableState();
     const [activePassive] = usesActivePassiveState();
-    return composition([
-        imports([
+    return style({
+        ...imports([
             // states:
             enableDisable(),
             activePassive(),
         ]),
-        states([
-            isActive([
-                imports([
+        ...states([
+            isActive({
+                ...imports([
                     markActive(),
                 ]),
-            ]),
+            }),
         ]),
-    ]);
+    });
 };
 export const useIndicatorSheet = createUseSheet(() => [
-    mainComposition([
-        imports([
-            // layouts:
-            usesIndicatorLayout(),
-            // variants:
-            usesIndicatorVariants(),
-            // states:
-            usesIndicatorStates(),
-        ]),
-    ]),
+    mainComposition(imports([
+        // layouts:
+        usesIndicatorLayout(),
+        // variants:
+        usesIndicatorVariants(),
+        // states:
+        usesIndicatorStates(),
+    ])),
 ], /*sheetId :*/ '9i8stbnt0e'); // an unique salt for SSR support, ensures the server-side & client-side have the same generated class names
 // configs:
 export const [cssProps, cssDecls, cssVals, cssConfig] = createCssConfig(() => {

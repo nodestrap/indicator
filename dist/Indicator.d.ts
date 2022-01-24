@@ -8,18 +8,18 @@ export interface EnableDisableVars {
     filter: any;
     anim: any;
 }
-export declare const isEnabled: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isEnabling: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isDisabling: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isDisabled: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isEnable: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isDisable: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isEnablingDisable: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
+export declare const isEnabled: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isEnabling: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isDisabling: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isDisabled: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isEnable: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isDisable: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isEnablingDisable: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
 /**
  * Uses enable & disable states.
- * @returns A `[Factory<StyleCollection>, ReadonlyRefs, ReadonlyDecls]` represents enable & disable state definitions.
+ * @returns A `[Factory<Rule>, ReadonlyRefs, ReadonlyDecls]` represents enable & disable state definitions.
  */
-export declare const usesEnableDisableState: () => readonly [() => StyleCollection, import("@cssfn/css-var").ReadonlyRefs<EnableDisableVars>, import("@cssfn/css-var").ReadonlyDecls<EnableDisableVars>];
+export declare const usesEnableDisableState: () => readonly [() => import("@cssfn/cssfn").Rule, import("@cssfn/css-var").ReadonlyRefs<EnableDisableVars>, import("@cssfn/css-var").ReadonlyDecls<EnableDisableVars>];
 export declare const useEnableDisableState: (props: IndicationProps & SemanticProps) => {
     enabled: boolean;
     disabled: boolean;
@@ -35,25 +35,25 @@ export interface ActivePassiveVars {
     filter: any;
     anim: any;
 }
-export declare const isActived: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isActivating: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isPassivating: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isPassived: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isActive: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isPassive: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
-export declare const isActivePassivating: (styles: StyleCollection) => import("@cssfn/cssfn").RuleEntry;
+export declare const isActived: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isActivating: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isPassivating: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isPassived: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isActive: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isPassive: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
+export declare const isActivePassivating: (styles: StyleCollection) => import("@cssfn/cssfn").Rule;
 /**
  * Uses active & passive states.
- * @returns A `[Factory<StyleCollection>, ReadonlyRefs, ReadonlyDecls]` represents active & passive state definitions.
+ * @returns A `[Factory<Rule>, ReadonlyRefs, ReadonlyDecls]` represents active & passive state definitions.
  */
-export declare const usesActivePassiveState: () => readonly [() => StyleCollection, import("@cssfn/css-var").ReadonlyRefs<ActivePassiveVars>, import("@cssfn/css-var").ReadonlyDecls<ActivePassiveVars>];
-export declare const markActive: () => StyleCollection;
+export declare const usesActivePassiveState: () => readonly [() => import("@cssfn/cssfn").Rule, import("@cssfn/css-var").ReadonlyRefs<ActivePassiveVars>, import("@cssfn/css-var").ReadonlyDecls<ActivePassiveVars>];
+export declare const markActive: () => import("@cssfn/cssfn").Rule;
 /**
  * Creates a conditional color definitions at active state.
  * @param themeName The name of active theme.
- * @returns A `StyleCollection` represents the conditional color definitions at active state.
+ * @returns A `Rule` represents the conditional color definitions at active state.
  */
-export declare const usesThemeActive: (themeName?: ThemeName | null) => StyleCollection;
+export declare const usesThemeActive: (themeName?: ThemeName | null) => import("@cssfn/cssfn").Rule;
 export declare const useActivePassiveState: (props: IndicationProps & SemanticProps) => {
     /**
      * partially/fully active
@@ -72,9 +72,9 @@ export interface TogglerActiveProps<TActiveChangeArg = unknown> extends Indicati
     onActiveChange?: (newActive: boolean, arg?: TActiveChangeArg) => void;
 }
 export declare const useTogglerActive: <TActiveChangeArg extends unknown = unknown>(props: TogglerActiveProps<TActiveChangeArg>, changeEventTarget?: React.RefObject<HTMLInputElement> | null | undefined) => [boolean, React.Dispatch<React.SetStateAction<boolean>>];
-export declare const usesIndicatorLayout: () => StyleCollection;
-export declare const usesIndicatorVariants: () => StyleCollection;
-export declare const usesIndicatorStates: () => StyleCollection;
+export declare const usesIndicatorLayout: () => import("@cssfn/cssfn").Rule;
+export declare const usesIndicatorVariants: () => import("@cssfn/cssfn").Rule;
+export declare const usesIndicatorStates: () => import("@cssfn/cssfn").Rule;
 export declare const useIndicatorSheet: import("@cssfn/types").Factory<import("jss").Classes<"main">>;
 export declare const cssProps: import("@cssfn/css-config").Refs<{
     filterDisable: string[][];
