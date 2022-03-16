@@ -135,7 +135,9 @@ export const useEnableDisableState = (props) => {
         props: (isCtrlElm ? {
             // a control_element uses pseudo :disabled for disabling
             disabled: !enabled,
-        } : {}),
+        } : {
+            'aria-disabled': !enabled ? true : undefined,
+        }),
         handleAnimationEnd: (e) => {
             if (e.target !== e.currentTarget)
                 return; // no bubbling

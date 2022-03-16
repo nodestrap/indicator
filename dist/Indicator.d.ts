@@ -26,7 +26,9 @@ export declare const useEnableDisableState: (props: IndicationProps & SemanticPr
     class: string | null;
     props: {
         disabled: boolean;
+        'aria-disabled'?: undefined;
     } | {
+        'aria-disabled': boolean | undefined;
         disabled?: undefined;
     };
     handleAnimationEnd: (e: React.AnimationEvent<HTMLElement>) => void;
